@@ -6,11 +6,12 @@ import java.util.Date;
 
 @Data
 public class ProductPriceDto {
-    private Long id;
 
     private Long productId;
 
     private Long brandId;
+
+    private Long priceList;
 
     private Date startDate;
 
