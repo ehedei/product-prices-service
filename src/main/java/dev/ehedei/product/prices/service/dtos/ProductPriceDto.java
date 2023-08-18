@@ -2,7 +2,7 @@ package dev.ehedei.product.prices.service.dtos;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 public class ProductPriceDto {
@@ -13,9 +13,9 @@ public class ProductPriceDto {
 
     private Long priceList;
 
-    private Date startDate;
+    private LocalDateTime startDate;
 
-    private Date endDate;
+    private LocalDateTime endDate;
 
     private Double price;
 }
