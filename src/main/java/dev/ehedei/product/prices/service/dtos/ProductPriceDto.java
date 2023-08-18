@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object (DTO) for representing product price information sent to client.
+ */
 @Data
 public class ProductPriceDto {
 

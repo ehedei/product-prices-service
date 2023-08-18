@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object (DTO) for specifying criteria when searching for prices.
+ */
 @Data
 public class PriceSearchCriteriaDto {
 

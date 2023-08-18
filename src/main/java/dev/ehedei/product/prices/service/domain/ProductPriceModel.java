@@ -12,6 +12,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entity class representing the prices of a product.
+ */
 @Entity
 @Table(name = "prices")
 @Data

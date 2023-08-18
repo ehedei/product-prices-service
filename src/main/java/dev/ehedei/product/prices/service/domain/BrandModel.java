@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+/**
+ * Entity class representing a brand.
+ */
 @Entity
 @Table(name = "brands")
 @Data

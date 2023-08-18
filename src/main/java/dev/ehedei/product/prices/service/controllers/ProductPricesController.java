@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+/**
+ * Controller class for managing product prices.
+ */
 @RestController
 @RequestMapping("/api/v1/product-prices")
 @Validated
@@ -25,6 +28,12 @@ public class ProductPricesController {
 
     private ProductPriceService productPriceService;
 
+    /**
+     * Retrieve product prices based on search criteria.
+     *
+     * @param priceSearchCriteriaDto The criteria to search for product prices.
+     * @return ResponseEntity containing the product price information if found, or a 404 Not Found response.
+     */
     @PostMapping("/search")
     public ResponseEntity<ProductPriceDto> getProductPrices(@RequestBody @Valid final PriceSearchCriteriaDto priceSearchCriteriaDto) {
         final Optional<ProductPriceDto> productPriceDto = getProductPriceService().getProductPriceBySearchCriteria(priceSearchCriteriaDto);
