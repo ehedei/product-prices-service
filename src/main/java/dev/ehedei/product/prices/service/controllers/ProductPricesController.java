@@ -10,7 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +25,8 @@ public class ProductPricesController {
 
     private ProductPriceService productPriceService;
 
-    @GetMapping("/search")
-    public ResponseEntity<ProductPriceDto> getProductPrices(@Valid final PriceSearchCriteriaDto priceSearchCriteriaDto) {
+    @PostMapping("/search")
+    public ResponseEntity<ProductPriceDto> getProductPrices(@RequestBody @Valid final PriceSearchCriteriaDto priceSearchCriteriaDto) {
         final Optional<ProductPriceDto> productPriceDto = getProductPriceService().getProductPriceBySearchCriteria(priceSearchCriteriaDto);
         return productPriceDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
