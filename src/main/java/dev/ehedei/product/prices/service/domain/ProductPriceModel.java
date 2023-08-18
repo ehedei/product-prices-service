@@ -31,7 +31,7 @@ public class ProductPriceModel {
     private LocalDateTime endDate;
 
     @Column(name = "price_list")
-    private Integer priceList;
+    private Long priceList;
 
     @Column(name = "product_id")
     private Long productId;
