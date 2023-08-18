@@ -25,7 +25,7 @@ public class ProductPriceServiceImpl implements ProductPriceService {
     public Optional<ProductPriceDto> getProductPriceBySearchCriteria(final PriceSearchCriteriaDto productPriceCriteria) {
 
         final Optional<ProductPriceModel> productPriceModel = getProductPriceRepository()
-                .findFirstByProductIdAndBrand_idAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(
+                .findFirstByProductIdAndBrand_idAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
                         productPriceCriteria.getProductId(),
                         productPriceCriteria.getBrandId(),
                         productPriceCriteria.getDate(),

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface ProductPriceRepository extends JpaRepository<ProductPriceModel, Long> {
-    Optional<ProductPriceModel> findFirstByProductIdAndBrand_idAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(
+    Optional<ProductPriceModel> findFirstByProductIdAndBrand_idAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
             Long productId, Long brand, LocalDateTime startDate, LocalDateTime endDate);
 
 }
