@@ -2,6 +2,7 @@ package dev.ehedei.product.prices.service.controllers;
 
 import dev.ehedei.product.prices.service.dtos.ProductPriceDto;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -46,7 +47,7 @@ class ProductPricesControllerTest {
 
     @ParameterizedTest(name = "Test {index}: petición a las {0} del producto 35455 para la brand 1 (ZARA)")
     @MethodSource("getArguments")
-    void getProductPrices(final String date, final double price, final long priceList) {
+    void getProductPrices_ValidCriteria_ReturnsProductPrice(final String date, final double price, final long priceList) {
         final ResponseEntity<ProductPriceDto> responseEntity = sendRequest(date);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -56,6 +57,18 @@ class ProductPricesControllerTest {
         assertNotNull(productPriceDto, "Response is null");
         assertEquals(price, productPriceDto.getPrice(), "Prices are not equal");
         assertEquals(priceList, productPriceDto.getPriceList(), "Price lists are not equal");
+    }
+
+    @Test
+    void testGetProductPrices_ReturnsNotFound() {
+        final ResponseEntity<ProductPriceDto> responseEntity = sendRequest("1900-01-01T10:00:00.000+00:00");
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode(), "Http Status code expected (404) is not correct");
+    }
+
+    @Test
+    void testGetProductPrices_InvalidCriteria_ReturnsBadRequest() {
+        final ResponseEntity<ProductPriceDto> responseEntity = sendRequest("Bad Request");
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode(), "Http Status code expected (400) is not correct");
     }
 
     private static Stream<Arguments> getArguments() {
