@@ -2,6 +2,7 @@ package dev.ehedei.product.prices.service.controllers;
 
 import dev.ehedei.product.prices.service.dtos.ProductPriceDto;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -60,12 +61,14 @@ class ProductPricesControllerTest {
     }
 
     @Test
+    @DisplayName("Controller must return error 404 if no price is found")
     void testGetProductPrices_ReturnsNotFound() {
         final ResponseEntity<ProductPriceDto> responseEntity = sendRequest("1900-01-01T10:00:00.000+00:00");
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode(), "Http Status code expected (404) is not correct");
     }
 
     @Test
+    @DisplayName("Controller must return error 400 if request has invalid fields")
     void testGetProductPrices_InvalidCriteria_ReturnsBadRequest() {
         final ResponseEntity<ProductPriceDto> responseEntity = sendRequest("Bad Request");
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode(), "Http Status code expected (400) is not correct");
